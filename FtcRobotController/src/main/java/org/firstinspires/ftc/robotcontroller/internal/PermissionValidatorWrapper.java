@@ -56,7 +56,7 @@ public class PermissionValidatorWrapper extends PermissionValidatorActivity {
         add(Manifest.permission.READ_PHONE_STATE);
     }};
 
-    private final static Class startApplication = FtcRobotControllerActivity.class;
+    private final static Class startApplication = OriginalFtcRobotControllerActivity.class;
 
     public String mapPermissionToExplanation(final String permission) {
         if (permission.equals(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
@@ -85,7 +85,7 @@ public class PermissionValidatorWrapper extends PermissionValidatorActivity {
 
     protected Class onStartApplication()
     {
-        FtcRobotControllerActivity.setPermissionsValidated();
+        OriginalFtcRobotControllerActivity.setPermissionsValidated();
         return startApplication;
     }
 }

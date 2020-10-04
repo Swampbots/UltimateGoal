@@ -35,7 +35,7 @@
     </activity>
 
     <activity
-      android:name="org.firstinspires.ftc.robotcontroller.internal.FtcRobotControllerActivity"
+      android:name="org.firstinspires.ftc.robotcontroller.internal.OriginalFtcRobotControllerActivity"
       android:screenOrientation="fullUser"
       android:configChanges="orientation|screenSize"
       android:label="@string/app_name"

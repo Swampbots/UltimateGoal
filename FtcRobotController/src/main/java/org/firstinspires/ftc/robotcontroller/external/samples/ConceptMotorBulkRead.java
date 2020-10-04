@@ -47,7 +47,7 @@ import java.util.List;
         Three scenarios are tested:
         Cache Mode = OFF    This is the normal default, where no cache is used, and every read produces a discrete transaction with
                             an expansion hub, which is the slowest approach.
-        Cache Mode = AUTO   This mode will attempt to minimize the number of discrete read commands, by performing bulk-reads
+        Cache Mode = AUTO   This mode will attempt to minimize the number of discrete read org.firstinspires.ftc.teamcode.robot.commands, by performing bulk-reads
                             and then returning values that have been cached.  The cache is updated automatically whenever a specific read operation is repeated.
                             This mode will always return fresh data, but it may perform more bulk-reads than absolutely required.
                             Extra reads will be performed if multiple identical encoder/velocity reads are performed in one control cycle.

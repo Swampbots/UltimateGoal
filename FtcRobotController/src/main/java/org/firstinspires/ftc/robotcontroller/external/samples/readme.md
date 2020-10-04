@@ -3,7 +3,7 @@
 No Team-specific code should be placed or modified in this ``.../samples`` folder.
 
 Full or partial Samples should be Copied from here, and then Pasted into
-the team's folder, using the Android Studio cut and paste commands.
+the team's folder, using the Android Studio cut and paste org.firstinspires.ftc.teamcode.robot.commands.
 This automatically changes all file and class names to be consistent.
 
 ### Naming of Samples
