@@ -7,11 +7,11 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 
 @TeleOp(name = "Mecanum Driver Control", group = "TeleOp")
-public class Nic extends OpMode {
+public class BasicDrive extends OpMode {
 
 
 
-    NicHardware hardware = new NicHardware();
+    BasicDriveHardware hardware = new BasicDriveHardware();
 
 
 
