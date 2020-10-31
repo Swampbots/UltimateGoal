@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -27,7 +28,7 @@ public class BasicDriveHardware {
 
 
     // Servos
-
+    public CRServo kicker;
 
 
     // IMU
@@ -41,8 +42,8 @@ public class BasicDriveHardware {
     public final double COUNTS_PER_INCH_EMPIRICAL = 1000 / 24.0;    // 1000 counts divided by 24.0 inches; determined through testing
 
     // Servo-specific variables
-
-
+    public static final double KICKER_SPEED_MAX = 1.0;
+    public static final double KICKER_SPEED_MIN = 0.0;
 
     // Speed modifier variables
     public static final double SLOW     = 0.35;
@@ -85,7 +86,7 @@ public class BasicDriveHardware {
 
         shooter     = hardwareMap.dcMotor.get("shooter");
 
-
+        kicker      = hardwareMap.crservo.get("kicker");
 
 
         frontLeft.  setDirection(DcMotorSimple.Direction.REVERSE);

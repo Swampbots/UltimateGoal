@@ -8,6 +8,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import static org.firstinspires.ftc.teamcode.BasicDriveHardware.INTAKE_MAX_POWER;
 import static org.firstinspires.ftc.teamcode.BasicDriveHardware.TRANSFER_MAX_POWER;
 import static org.firstinspires.ftc.teamcode.BasicDriveHardware.SHOOTER_MAX_POWER;
+import static org.firstinspires.ftc.teamcode.BasicDriveHardware.KICKER_SPEED_MAX;
+import static org.firstinspires.ftc.teamcode.BasicDriveHardware.KICKER_SPEED_MIN;
 
 @TeleOp(name = "Mecanum Driver Control", group = "TeleOp")
 public class BasicDrive extends OpMode {
@@ -24,7 +26,7 @@ public class BasicDrive extends OpMode {
 
 
 
-
+        hardware.kicker.    setPower(KICKER_SPEED_MIN);
 
 
 
@@ -54,7 +56,7 @@ public class BasicDrive extends OpMode {
 
         hardware.shooter.setPower(shooterPower);
 
-
+        hardware.kicker.setPower(gamepad1.y ? KICKER_SPEED_MAX : KICKER_SPEED_MIN);
 
 
         telemetry.addLine("Running");
