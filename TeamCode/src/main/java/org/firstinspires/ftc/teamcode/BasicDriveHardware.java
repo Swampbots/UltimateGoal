@@ -29,6 +29,7 @@ public class BasicDriveHardware {
 
     // Servos
     public CRServo kicker;
+    public Servo sweeper;
 
 
     // IMU
@@ -44,6 +45,8 @@ public class BasicDriveHardware {
     // Servo-specific variables
     public static final double KICKER_SPEED_MAX = 1.0;
     public static final double KICKER_SPEED_MIN = 0.0;
+    public static final double SWEEPER_RANGE_MAX    = 1.0;
+    public static final double SWEEPER_RANGE_MIN    = 0.0;
 
     // Speed modifier variables
     public static final double SLOW     = 0.35;
@@ -87,6 +90,7 @@ public class BasicDriveHardware {
         shooter     = hardwareMap.dcMotor.get("shooter");
 
         kicker      = hardwareMap.crservo.get("kicker");
+        sweeper     = hardwareMap.servo.get("sweeper");
 
 
         frontLeft.  setDirection(DcMotorSimple.Direction.REVERSE);
