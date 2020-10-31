@@ -19,11 +19,7 @@ public class BasicDrive extends OpMode {
     public void init() {
         hardware.init(hardwareMap);
 
-        hardware.pulleyLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        hardware.pulleyRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        hardware.pulleyLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        hardware.pulleyRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
 
 
@@ -46,8 +42,6 @@ public class BasicDrive extends OpMode {
 
 
 
-        hardware.pulleyLeft.setPower(gamepad2.left_stick_y);
-        hardware.pulleyRight.setPower(gamepad2.right_stick_y);
 
 
 

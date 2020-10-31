@@ -19,28 +19,17 @@ public class BasicDriveHardware {
     public DcMotor rearLeft;
     public DcMotor rearRight;
 
-    public DcMotor pulleyLeft;
-    public DcMotor pulleyRight;
 
-    public DcMotor arm;
 
-    public DcMotor tapeMeasure;
+
+
+
 
     // Servos
 
-//    public Servo clamp;
-
-    //    public Servo gripper;
-    public Servo testGripper;
-    public Servo wrist;
-
-    public Servo foundLeft;
-    public Servo foundRight;
-
-    public Servo capstone;
 
 
-    //    // IMU
+    // IMU
     BNO055IMU imu;
 
     // Drive encoder variables
@@ -51,14 +40,7 @@ public class BasicDriveHardware {
     public final double COUNTS_PER_INCH_EMPIRICAL = 1000 / 24.0;    // 1000 counts divided by 24.0 inches; determined through testing
 
     // Servo-specific variables
-    public static final double GRIPPER_CLOSED = 0.0;
-    public static final double GRIPPER_OPEN = 1.0;
 
-    public static final double CLAMP_LEFT     = 0.3;
-    public static final double RELEASE_LEFT   = 1.0;
-
-    private final double CLAMP_RIGHT    = 1.0;
-    private final double RELEASE_RIGHT  = 0.3;
 
 
     // Speed modifier variables
@@ -66,32 +48,9 @@ public class BasicDriveHardware {
     public static final double NORMAL   = 0.8;
     public static final double FAST     = 1.0;
 
-    public static double wheelSpeedMod  = FAST;
-    public static double armSpeedMod    = FAST;
-
-    public static final double WRIST_SCALAR = 0.01;
-
-    // Wrist positions
-    public static final double WRIST_PLACING  = 0.20;
-    public static final double WRIST_GRABBING = 1.00;
-    public static final double WRIST_STARTING = 0.30;
-    public static final double WRIST_STORING  = 0.37;
-
-    // Capstone positions
-    public static final double CAP_STOWED   = 1.0;
-    public static final double CAP_DEPLOYED = 0.0;
 
 
-    // Arm positions (to seperate different modes of operation for the wrist)
-    public static final int ARM_PLACING   = 1900;
-    public static final int ARM_GRABBING  = 40;
-    public static final int ARM_STARTING  = 0;
-    public static final int ARM_STORING   = 200;
 
-
-    // Pulley control
-    public static boolean resetPulleys = false;
-    public static final double POWER_THRESHOLD = 0.01;
 
 
     // PID variables
@@ -120,8 +79,7 @@ public class BasicDriveHardware {
         rearLeft    = hardwareMap.dcMotor.get("rl_drive");
         rearRight   = hardwareMap.dcMotor.get("rr_drive");
 
-        pulleyLeft      = hardwareMap.dcMotor.get("pulley_left");
-        pulleyRight     = hardwareMap.dcMotor.get("pulley_right");
+
 
 
 
@@ -266,45 +224,6 @@ public class BasicDriveHardware {
         return imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES).firstAngle;
     }
 
-    // Foundation moving methods
-    public void clampFoundation() {
-        foundLeft.setPosition(CLAMP_LEFT);
-        foundRight.setPosition(CLAMP_RIGHT);
-    }
-
-    public void releaseFoundation() {
-        foundLeft.setPosition(RELEASE_LEFT);
-        foundRight.setPosition(RELEASE_RIGHT);
-    }
-
-
-
-
-
-
-
-
-    // Pulley methods
-    public void setPulleyMode(DcMotor.RunMode newMode) {
-        pulleyLeft. setMode(newMode);
-        pulleyRight.setMode(newMode);
-    }
-
-    public void setPulleyTargets (int counts) {
-        pulleyLeft. setTargetPosition(counts);
-        pulleyRight.setTargetPosition(counts);
-    }
-
-    public void setPulleyPower(double power) {
-        pulleyLeft. setPower(power);
-        pulleyRight.setPower(power);
-    }
-
-    public boolean getPulleyIsBusy() {
-        return (pulleyLeft.isBusy() && pulleyRight.isBusy());   // With && operator, will return false once either is finished
-    }
-
-
 
 
 
@@ -317,11 +236,7 @@ public class BasicDriveHardware {
         rearLeft.setPower(0.0);
         rearRight.setPower(0.0);
 
-        pulleyLeft.setPower(0.0);
-        pulleyRight.setPower(0.0);
 
-        arm.setPower(0.0);
-        tapeMeasure.setPower(0.0);
     }
 
 
