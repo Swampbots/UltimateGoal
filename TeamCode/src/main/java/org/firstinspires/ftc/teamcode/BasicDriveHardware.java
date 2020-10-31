@@ -22,8 +22,7 @@ public class BasicDriveHardware {
     public DcMotor intake;
     public DcMotor transfer;
 
-
-
+    public DcMotor shooter;
 
 
 
@@ -50,10 +49,10 @@ public class BasicDriveHardware {
     public static final double NORMAL   = 0.8;
     public static final double FAST     = 1.0;
 
-
     // Motor modifier variables
     public static final double INTAKE_MAX_POWER     = 1.0;
     public static final double TRANSFER_MAX_POWER   = 1.0;
+    public static final double SHOOTER_MAX_POWER    = 0.7;
 
     // PID variables
     public final double MAX_SPEED = 0.3;
@@ -84,6 +83,7 @@ public class BasicDriveHardware {
         intake      = hardwareMap.dcMotor.get("intake");
         transfer    = hardwareMap.dcMotor.get("transfer");
 
+        shooter     = hardwareMap.dcMotor.get("shooter");
 
 
 
@@ -103,8 +103,7 @@ public class BasicDriveHardware {
         intake.         setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         transfer.       setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-
-
+        shooter.        setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
 
 

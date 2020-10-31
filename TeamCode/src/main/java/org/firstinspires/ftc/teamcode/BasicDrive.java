@@ -7,17 +7,16 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 import static org.firstinspires.ftc.teamcode.BasicDriveHardware.INTAKE_MAX_POWER;
 import static org.firstinspires.ftc.teamcode.BasicDriveHardware.TRANSFER_MAX_POWER;
+import static org.firstinspires.ftc.teamcode.BasicDriveHardware.SHOOTER_MAX_POWER;
 
 @TeleOp(name = "Mecanum Driver Control", group = "TeleOp")
 public class BasicDrive extends OpMode {
-
-
-
     BasicDriveHardware hardware = new BasicDriveHardware();
 
 
     double intakePower   = 0;
     double transferPower = 0;
+    double shooterPower  = 0;
 
 
     public void init() {
@@ -45,11 +44,7 @@ public class BasicDrive extends OpMode {
          intakePower     = gamepad1.a ? 1.0 * INTAKE_MAX_POWER : 0.0;
          transferPower   = gamepad1.a ? 1.0 * TRANSFER_MAX_POWER : 0.0;
 
-
-
-
-
-
+         shooterPower    = gamepad1.b ? 1.0 * SHOOTER_MAX_POWER : 0.0;
 
         // Set the power
         hardware.setMecanumPower(drive, strafe, twist, .6);
@@ -57,6 +52,7 @@ public class BasicDrive extends OpMode {
         hardware.intake.setPower(intakePower);
         hardware.transfer.setPower(transferPower);
 
+        hardware.shooter.setPower(shooterPower);
 
 
 
