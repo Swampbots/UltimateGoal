@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
+import static org.firstinspires.ftc.teamcode.BasicDriveHardware.INTAKE_MAX_POWER;
 
 @TeleOp(name = "Mecanum Driver Control", group = "TeleOp")
 public class BasicDrive extends OpMode {
@@ -14,6 +15,7 @@ public class BasicDrive extends OpMode {
     BasicDriveHardware hardware = new BasicDriveHardware();
 
 
+    double intakePower   = 0;
 
 
     public void init() {
@@ -38,6 +40,7 @@ public class BasicDrive extends OpMode {
         double strafe = gamepad1.left_stick_x;
         double twist = -gamepad1.right_stick_x;
 
+         intakePower     = gamepad1.a ? 1.0 * INTAKE_MAX_POWER : 0.0;
 
 
 
@@ -48,10 +51,10 @@ public class BasicDrive extends OpMode {
         // Set the power
         hardware.setMecanumPower(drive, strafe, twist, .6);
 
+        hardware.intake.setPower(intakePower);
 
 
 
-        // Tape drive controls
 
 
         telemetry.addLine("Running");

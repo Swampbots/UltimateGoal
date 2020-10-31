@@ -19,6 +19,7 @@ public class BasicDriveHardware {
     public DcMotor rearLeft;
     public DcMotor rearRight;
 
+    public DcMotor intake;
 
 
 
@@ -51,7 +52,7 @@ public class BasicDriveHardware {
 
 
 
-
+    // Motor modifier variables
 
     // PID variables
     public final double MAX_SPEED = 0.3;
@@ -79,6 +80,7 @@ public class BasicDriveHardware {
         rearLeft    = hardwareMap.dcMotor.get("rl_drive");
         rearRight   = hardwareMap.dcMotor.get("rr_drive");
 
+        intake      = hardwareMap.dcMotor.get("intake");
 
 
 
@@ -96,6 +98,7 @@ public class BasicDriveHardware {
         rearLeft.       setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rearRight.      setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
+        intake.         setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
 
 
