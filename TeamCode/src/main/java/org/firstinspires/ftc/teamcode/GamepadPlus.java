@@ -104,6 +104,11 @@ public class GamepadPlus {
         return timer.getTime() - timeActivated.get(indexHandler.indexOf(convertButtonInputs(button)));
     }
 
+    public boolean wasJustPressed(String button){
+        return isPressed(button) && howLongPressed(button) < 5;
+
+    }
+
 
 
     private void updateButtonTime(boolean button, String name) {

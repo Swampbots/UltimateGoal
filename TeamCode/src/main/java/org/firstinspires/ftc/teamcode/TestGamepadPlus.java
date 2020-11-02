@@ -26,5 +26,9 @@ public class TestGamepadPlus extends OpMode {
 
         //Should return the amount of milliseconds the button was pressed"
         telemetry.addData("Time "+ button +" pressed",gp1.howLongPressed(button));
+        telemetry.addLine();
+
+        //Should return 'true' for the first few milliseconds after the button was pressed
+        telemetry.addData("Was "+button+" just pressed?",gp1.wasJustPressed(button));
     }
 }
