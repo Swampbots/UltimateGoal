@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import static com.qualcomm.robotcore.hardware.Gamepad.Type.SONY_PS4;
+import static com.qualcomm.robotcore.hardware.Gamepad.Type.UNKNOWN;
 
 
 public class GamepadPlus {
@@ -19,15 +20,13 @@ public class GamepadPlus {
 
     private static final float TRIGGER_THRESHOLD = 0.7f;
 
-    private boolean isPS4Controller = false;
     private boolean triggersAsButtons = false;
+    private boolean isPS4Controller;
 
     public GamepadPlus(@NotNull Gamepad gp) {
         this.gp = gp;
 
-        if(gp.type().equals(SONY_PS4)){
-            isPS4Controller = true;
-        }
+        isPS4Controller = gp.type().equals(SONY_PS4);
 
         timer = new Date();
 
@@ -36,19 +35,21 @@ public class GamepadPlus {
     public GamepadPlus(@NotNull Gamepad gp, boolean makeTriggersButtons){
         this.gp = gp;
 
-        if(gp.type().equals(SONY_PS4)){
-            isPS4Controller = true;
-        }
+        isPS4Controller = gp.type().equals(SONY_PS4);
 
         triggersAsButtons = makeTriggersButtons;
 
 
 
         timer = new Date();
+        isPS4Controller = gp.type().equals(SONY_PS4);
 
     }
 
     public void update(){
+        if(gp.type().equals(UNKNOWN)){ //Prevents update from running if not controller is plugged in
+            return;
+        }
         // Run button updates
         if(isPS4Controller){ // Have to separate PS4 buttons
             updateButtonTime(gp.circle,"circle");
