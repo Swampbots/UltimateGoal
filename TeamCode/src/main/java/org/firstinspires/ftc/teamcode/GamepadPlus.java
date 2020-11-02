@@ -78,13 +78,14 @@ public class GamepadPlus {
     }
 
     public boolean isPressed(String button){
-        return indexHandler.indexOf(button) != -1;
+
+        return indexHandler.indexOf(convertButtonInputs(button)) != -1;
     }
 
     public long howLongPressed(String button){
         if(!isPressed(button)) return 0;
 
-        return timer.getTime() - timeActivated.get(indexHandler.indexOf(button));
+        return timer.getTime() - timeActivated.get(indexHandler.indexOf(convertButtonInputs(button)));
     }
 
 
@@ -107,5 +108,40 @@ public class GamepadPlus {
             }
         }
 
+    }
+
+    private String convertButtonInputs(String button){
+        if(isPS4Controller){ // Ensure compatibility between ps4 and non-ps4 controllers
+            switch (button){
+                case "a":
+                    button = "cross";
+                    break;
+                case "b":
+                    button = "circle";
+                    break;
+                case "x":
+                    button = "square";
+                    break;
+                case "y":
+                    button = "triangle";
+                    break;
+            }
+        } else {
+            switch (button){
+                case  "cross":
+                    button = "a";
+                    break;
+                case "circle":
+                    button = "b";
+                    break;
+                case "square":
+                    button = "x";
+                    break;
+                case "triangle":
+                    button = "y";
+                    break;
+            }
+        }
+        return button;
     }
 }
