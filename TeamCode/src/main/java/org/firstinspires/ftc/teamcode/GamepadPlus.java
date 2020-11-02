@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
+
+
 import com.qualcomm.robotcore.hardware.Gamepad;
 
 import org.jetbrains.annotations.NotNull;
@@ -20,16 +22,21 @@ public class GamepadPlus {
 
     private static final float TRIGGER_THRESHOLD = 0.7f;
 
-    private boolean triggersAsButtons = false;
     private boolean isPS4Controller;
+    private boolean ltButton;
+    private boolean rtButton;
+
+
 
     public GamepadPlus(@NotNull Gamepad gp) {
         this.gp = gp;
 
         isPS4Controller = gp.type().equals(SONY_PS4);
 
-        timer = new Date();
+        ltButton = false;
+        rtButton = false;
 
+        timer = new Date();
     }
 
     public GamepadPlus(@NotNull Gamepad gp, boolean makeTriggersButtons){
@@ -37,15 +44,22 @@ public class GamepadPlus {
 
         isPS4Controller = gp.type().equals(SONY_PS4);
 
-        triggersAsButtons = makeTriggersButtons;
-
-
+        ltButton = makeTriggersButtons;
+        rtButton = makeTriggersButtons;
 
         timer = new Date();
-        isPS4Controller = gp.type().equals(SONY_PS4);
-
     }
 
+    public GamepadPlus(@NotNull Gamepad gp, boolean makeLeftTriggerButton, boolean makeRightTriggerButton){
+        this.gp = gp;
+
+        isPS4Controller = gp.type().equals(SONY_PS4);
+
+        ltButton = makeLeftTriggerButton;
+        rtButton = makeRightTriggerButton;
+
+        timer = new Date();
+    }
     public void update(){
         if(gp.type().equals(UNKNOWN)){ //Prevents update from running if not controller is plugged in
             return;
@@ -71,8 +85,10 @@ public class GamepadPlus {
         updateButtonTime(gp.left_bumper,"left_bumper");
         updateButtonTime(gp.right_bumper,"right_bumper");
 
-        if(triggersAsButtons){
-            updateButtonTime((gp.left_trigger > TRIGGER_THRESHOLD),"left_trigger");
+        if(ltButton){
+            updateButtonTime((gp.left_trigger > TRIGGER_THRESHOLD), "left_trigger");
+        }
+        if(rtButton){
             updateButtonTime((gp.right_trigger > TRIGGER_THRESHOLD),"right_trigger");
         }
     }
