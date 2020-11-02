@@ -19,7 +19,12 @@ public class TestGamepadPlus extends OpMode {
 
         String button = "circle";
 
+
+        //Should return 'true' while the button is pressed
         telemetry.addData("Is "+ button +" pressed?",gp1.isPressed(button));
+        telemetry.addLine();
+
+        //Should return the amount of milliseconds the button was pressed"
         telemetry.addData("Time "+ button +" pressed",gp1.howLongPressed(button));
     }
 }
