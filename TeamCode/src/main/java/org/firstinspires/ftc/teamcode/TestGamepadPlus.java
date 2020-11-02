@@ -15,6 +15,8 @@ public class TestGamepadPlus extends OpMode {
 
     @Override
     public void loop() {
+        gp1.update();
+
         String button = "circle";
 
         telemetry.addData("Is "+ button +" pressed?",gp1.isPressed(button));
