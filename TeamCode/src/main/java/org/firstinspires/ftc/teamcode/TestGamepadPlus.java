@@ -1,5 +1,9 @@
 package org.firstinspires.ftc.teamcode;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -11,13 +15,17 @@ public class TestGamepadPlus extends OpMode {
     @Override
     public void init() {
         gp1 = new GamepadPlus(gamepad1);
+
+        telemetry.addData("gp type",gamepad1.type());
+        telemetry.update();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void loop() {
         gp1.update();
 
-        String button = "circle";
+        String button = "a";
 
 
         //Should return 'true' while the button is pressed
@@ -30,5 +38,24 @@ public class TestGamepadPlus extends OpMode {
 
         //Should return 'true' for the first few milliseconds after the button was pressed
         telemetry.addData("Was "+button+" just pressed?",gp1.wasJustPressed(button));
+        telemetry.addLine();
+
+        telemetry.addData("Timer",gp1.getTimer());
+        telemetry.addLine();
+
+        telemetry.addData("Index List",gp1.getCurrentIndexes());
+        telemetry.addLine();
+
+        telemetry.addData("Timer list",gp1.getCurrentTimes());
+        telemetry.addLine();
+
+        telemetry.addData("Index-1 List",gp1.getPreviousIndexes());
+        telemetry.addLine();
+
+        telemetry.addData("Timer-1 list",gp1.getPreviousTimes());
+        telemetry.addLine();
+
+        telemetry.addData("Sanity chack",gamepad1.a);
+        telemetry.update();
     }
 }
