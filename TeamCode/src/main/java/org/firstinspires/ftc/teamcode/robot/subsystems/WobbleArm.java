@@ -7,12 +7,12 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 import java.util.HashMap;
 
-public class Wobble implements Subsystem {
+public class WobbleArm implements Subsystem {
     // Hardware map
     private HardwareMap hardwareMap;
 
     private DcMotor arm;
-    private Servo grip;
+
 
     public enum ARM_TARGETS {
         UP,
@@ -28,25 +28,14 @@ public class Wobble implements Subsystem {
             }
         }
     }
-    public enum GRIP_TARGETS {
-        OPEN,
-        CLOSE;
 
-        public double getTarget(){
-            switch (this){
-                case OPEN:  return 1;
-                case CLOSE: return 0;
-                default:    return 0;
-            }
-        }
-    }
 
     private double power;
 
     private int targetPos;
     private int targetOffset = 0;
 
-    public Wobble(HardwareMap hardwareMap){
+    public WobbleArm(HardwareMap hardwareMap){
         this.hardwareMap = hardwareMap;
 
 

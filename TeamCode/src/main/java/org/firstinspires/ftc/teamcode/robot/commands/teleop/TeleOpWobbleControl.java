@@ -3,14 +3,14 @@ package org.firstinspires.ftc.teamcode.robot.commands.teleop;
 import com.disnodeteam.dogecommander.Command;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
-import org.firstinspires.ftc.teamcode.robot.subsystems.Wobble;
+import org.firstinspires.ftc.teamcode.robot.subsystems.WobbleArm;
 
 public class TeleOpWobbleControl implements Command {
     private Gamepad gamepad1;
     private Gamepad gamepad2;
-    private Wobble wobble;
+    private WobbleArm wobble;
 
-    public TeleOpWobbleControl(Wobble wobble, Gamepad gamepad1, Gamepad gamepad2){
+    public TeleOpWobbleControl(WobbleArm wobble, Gamepad gamepad1, Gamepad gamepad2){
         this.gamepad1 = gamepad1;
         this.gamepad2 = gamepad2;
         this.wobble = wobble;
@@ -24,13 +24,13 @@ public class TeleOpWobbleControl implements Command {
     @Override
     public void periodic() {
         if(gamepad1.dpad_up){
-            wobble.setArmTargetPos(Wobble.ARM_TARGETS.UP.getTarget());
+            wobble.setArmTargetPos(WobbleArm.ARM_TARGETS.UP.getTarget());
         }
         if(gamepad1.dpad_down){
-            wobble.setArmTargetPos(Wobble.ARM_TARGETS.DOWN.getTarget());
+            wobble.setArmTargetPos(WobbleArm.ARM_TARGETS.DOWN.getTarget());
         }
         if(gamepad1.dpad_left || gamepad1.dpad_right){
-            wobble.setArmTargetPos(Wobble.ARM_TARGETS.OUT.getTarget());
+            wobble.setArmTargetPos(WobbleArm.ARM_TARGETS.OUT.getTarget());
         }
 
         if(gamepad1.a){
@@ -40,9 +40,9 @@ public class TeleOpWobbleControl implements Command {
         }
 
         if(gamepad1.x){
-            wobble.setGripTargetPos(Wobble.GRIP_TARGETS.CLOSE.getTarget());
+            wobble.setGripTargetPos(WobbleArm.GRIP_TARGETS.CLOSE.getTarget());
         } else {
-            wobble.setGripTargetPos(Wobble.GRIP_TARGETS.OPEN.getTarget());
+            wobble.setGripTargetPos(WobbleArm.GRIP_TARGETS.OPEN.getTarget());
         }
     }
 

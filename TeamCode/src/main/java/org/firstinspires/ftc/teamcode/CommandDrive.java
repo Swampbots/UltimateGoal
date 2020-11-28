@@ -16,7 +16,7 @@ import org.firstinspires.ftc.teamcode.robot.subsystems.Intake;
 import org.firstinspires.ftc.teamcode.robot.subsystems.Kicker;
 import org.firstinspires.ftc.teamcode.robot.subsystems.Shooter;
 import org.firstinspires.ftc.teamcode.robot.subsystems.Transfer;
-import org.firstinspires.ftc.teamcode.robot.subsystems.Wobble;
+import org.firstinspires.ftc.teamcode.robot.subsystems.WobbleArm;
 
 @TeleOp(name = "Command Drive", group = "TeleOp")
 public class CommandDrive extends LinearOpMode implements DogeOpMode {
@@ -27,7 +27,7 @@ public class CommandDrive extends LinearOpMode implements DogeOpMode {
         Drive drive             = new Drive(hardwareMap,true);
         Kicker kicker           = new Kicker(hardwareMap);
         Shooter shooter         = new Shooter(hardwareMap);
-        Wobble wobble           = new Wobble(hardwareMap);
+        WobbleArm wobble           = new WobbleArm(hardwareMap);
         Intake intake           = new Intake(hardwareMap);
         Transfer transfer       = new Transfer(hardwareMap);
 
