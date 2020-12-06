@@ -28,7 +28,7 @@ public class Arm implements Subsystem {
         }
     }
 
-    private double power;
+    private double power = 0;
 
     private int targetPos;
     private int targetOffset = 0;
