@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.testing;
 
 import android.os.Build;
 
@@ -6,6 +6,8 @@ import androidx.annotation.RequiresApi;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+
+import org.firstinspires.ftc.teamcode.GamepadPlus;
 
 @TeleOp
 public class TestGamepadPlus extends OpMode {
