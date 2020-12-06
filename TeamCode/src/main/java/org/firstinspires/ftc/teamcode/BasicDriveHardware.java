@@ -8,9 +8,13 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
+import org.openftc.easyopencv.OpenCvCamera;
+import org.openftc.easyopencv.OpenCvCameraFactory;
+import org.openftc.easyopencv.OpenCvCameraRotation;
 
 public class BasicDriveHardware {
 
@@ -72,6 +76,8 @@ public class BasicDriveHardware {
     public static final double TIMEOUT = 2.0;  // 2 seconds
 
     // Camera variables
+    public OpenCvCamera webcam;
+    public RingPatternPipeline vision;
 
     public void init(HardwareMap hwMap) {
         init(hwMap, false, false); // Default is to not initialize the camera or the IMU
@@ -79,7 +85,7 @@ public class BasicDriveHardware {
 
 
     public void init(HardwareMap hardwareMap, boolean initCamera, boolean initIMU) {
-        frontLeft   = hardwareMap.dcMotor.get("fl_drive");
+        /*frontLeft   = hardwareMap.dcMotor.get("fl_drive");
         frontRight  = hardwareMap.dcMotor.get("fr_drive");
         rearLeft    = hardwareMap.dcMotor.get("rl_drive");
         rearRight   = hardwareMap.dcMotor.get("rr_drive");
@@ -108,7 +114,7 @@ public class BasicDriveHardware {
         intake.         setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         transfer.       setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        shooter.        setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        shooter.        setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);*/
 
 
 
@@ -126,7 +132,14 @@ public class BasicDriveHardware {
 
 
 
-
+        if(initCamera) {
+            int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+            webcam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam1"), cameraMonitorViewId);
+            webcam.openCameraDevice();
+            vision = new RingPatternPipeline();
+            webcam.setPipeline(vision);
+            webcam.startStreaming(640, 480, OpenCvCameraRotation.SIDEWAYS_RIGHT);
+        }
 
 
     }
