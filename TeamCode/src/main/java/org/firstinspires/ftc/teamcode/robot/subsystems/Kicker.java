@@ -10,10 +10,21 @@ public class Kicker implements Subsystem {
 
     private Servo kicker;
 
-    private final double IN = 0.0;
-    private final double OUT = 1.0;
+    public enum TARGETS{
+        IN,
+        OUT;
 
-    private double targetPos = IN;
+        public double getTarget(){
+            switch (this){
+                case IN:    return 0.0;
+                case OUT:   return 1.0;
+                default:    return 0.0;
+            }
+        }
+    }
+
+
+    private double targetPos = TARGETS.IN.getTarget();
 
     public Kicker(HardwareMap hardwareMap){
         this.hardwareMap = hardwareMap;
@@ -35,5 +46,13 @@ public class Kicker implements Subsystem {
 
     public double getTargetPos() {
         return targetPos;
+    }
+
+    public double getCurrentPos() {
+        return kicker.getPosition();
+    }
+
+    public void togglePos(){ //   0 |----1----| .5 |----0----| 1
+        targetPos = Math.abs(targetPos-TARGETS.IN.getTarget()) < Math.abs(targetPos-TARGETS.OUT.getTarget()) ? TARGETS.OUT.getTarget() : TARGETS.OUT.getTarget();
     }
 }

@@ -7,14 +7,14 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 import java.util.HashMap;
 
-public class WobbleArm implements Subsystem {
+public class Arm implements Subsystem {
     // Hardware map
     private HardwareMap hardwareMap;
 
     private DcMotor arm;
 
 
-    public enum ARM_TARGETS {
+    public enum TARGETS {
         UP,
         DOWN,
         OUT;
@@ -35,7 +35,7 @@ public class WobbleArm implements Subsystem {
     private int targetPos;
     private int targetOffset = 0;
 
-    public WobbleArm(HardwareMap hardwareMap){
+    public Arm(HardwareMap hardwareMap){
         this.hardwareMap = hardwareMap;
 
 
@@ -44,60 +44,55 @@ public class WobbleArm implements Subsystem {
     @Override
     public void initHardware() {
         arm = hardwareMap.get(DcMotor.class, "arm");
-        grip = hardwareMap.get(Servo.class, "grip");
 
         targetPos = arm.getCurrentPosition();
 
         arm.setTargetPosition(targetPos);
         arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        grip.setPosition(GRIP_TARGETS.OPEN.getTarget());
+        arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
     @Override
     public void periodic() {
-        arm.setTargetPosition(targetPos);
+        if(arm.getMode() == DcMotor.RunMode.RUN_TO_POSITION){
+            arm.setTargetPosition(targetPos);
+        } else if(arm.getMode() == DcMotor.RunMode.RUN_WITHOUT_ENCODER){
+            arm.setPower(power);
+        }
+
     }
 
-    public void resetArmTargets(){
+    public void resetTargetPos(){
         targetOffset = arm.getCurrentPosition() - targetOffset;
     }
 
-
-
-    public void setArmTargetPos(int targetPos){
+    public void setTargetPos(int targetPos){
         this.targetPos = targetPos - targetOffset;
     }
 
-    public void setGripTargetPos(double pos){
-        grip.setPosition(pos - targetOffset);
-    }
-
-    public int getArmPos(){
+    public int getCurrentPos(){
         return arm.getCurrentPosition() - targetOffset;
     }
 
-    public int getArmTargetPos(){
+    public int getTargetPos(){
         return arm.getTargetPosition() - targetOffset;
     }
 
-    public double getGripPos(){
-        return grip.getPosition();
-    }
 
-    public void setArmRunMode(DcMotor.RunMode runMode){
+    public void setRunMode(DcMotor.RunMode runMode){
         arm.setMode(runMode);
     }
 
-    public DcMotor.RunMode getArmRunMode(){
+    public DcMotor.RunMode getRunMode(){
         return arm.getMode();
     }
 
-    public void setArmPower(double power){
+    public void setPower(double power){
         this.power = power;
     }
 
-    public double getArmPower(){
+    public double getPower(){
         return power;
     }
 
