@@ -49,10 +49,12 @@ public class CommandDrive extends LinearOpMode implements DogeOpMode {
                 new TeleOpDriveControl(drive,gamepad1),
                 new TeleOpKickerControl(kicker,gamepad1),
                 new TeleOpShooterControl(shooter,gamepad2),
-                new TeleOpArmControl(arm,gamepad1,gamepad2),
+                new TeleOpArmControl(arm,gamepad1),
                 new TeleOpGripControl(grip,gamepad1),
                 new TeleOpIntakeControl(intake,gamepad2),
                 new TeleOpTransferControl(transfer,gamepad2)
         );
+
+        commander.stop();
     }
 }
