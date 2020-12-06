@@ -13,7 +13,6 @@ public class Arm implements Subsystem {
 
     private DcMotor arm;
 
-
     public enum TARGETS {
         UP,
         DOWN,
@@ -29,7 +28,6 @@ public class Arm implements Subsystem {
         }
     }
 
-
     private double power;
 
     private int targetPos;
@@ -37,8 +35,6 @@ public class Arm implements Subsystem {
 
     public Arm(HardwareMap hardwareMap){
         this.hardwareMap = hardwareMap;
-
-
     }
 
     @Override
