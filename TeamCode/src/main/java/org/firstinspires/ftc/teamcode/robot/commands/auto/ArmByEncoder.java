@@ -4,10 +4,10 @@ import com.disnodeteam.dogecommander.Command;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.robot.subsystems.WobbleArm;
+import org.firstinspires.ftc.teamcode.robot.subsystems.Arm;
 
-public class WobbleByEncoder implements Command {
-    private WobbleArm wobble;
+public class ArmByEncoder implements Command {
+    private Arm arm;
 
     private ElapsedTime timer;
     private double power;
@@ -17,19 +17,19 @@ public class WobbleByEncoder implements Command {
     private final double DEFAULT_TIMEOUT = 5.0;
     private DcMotor.RunMode prevRunMode;
 
-    public WobbleByEncoder(WobbleArm wobble, int counts, double target, double power, double timeout){
+    public ArmByEncoder(Arm arm, int counts, double target, double power, double timeout){
         timer = new ElapsedTime();
 
-        this.wobble = wobble;
+        this.arm = arm;
         this.counts = counts;
         this.power = power;
         this.timeout = timeout;
     }
 
-    public WobbleByEncoder(WobbleArm wobble, int counts, double target, double power){
+    public ArmByEncoder(Arm arm, int counts, double target, double power){
         timer = new ElapsedTime();
 
-        this.wobble = wobble;
+        this.arm = arm;
         this.counts = counts;
         this.power = power;
         this.timeout = DEFAULT_TIMEOUT;
@@ -39,7 +39,8 @@ public class WobbleByEncoder implements Command {
     public void start() {
         timer.reset();
 
-        int currentPos = wobble.getArmTargetPos();
+        int currentPos = arm.getTargetPos();
+
     }
 
     @Override
